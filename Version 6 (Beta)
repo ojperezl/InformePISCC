@@ -69,7 +69,7 @@ d_pob$id <- paste(d_pob$coddpto, d_pob$anno, sep = "_")
 
 ![](/Users/OscarJavier/Dropbox/3. Trabajo/6. DNP/Script/InfomePISCC/logos.png)
 
-# Municipio de `r nombre$mun` en el departamento de `r nombre$dpto`
+# Municipio de `r nombre$mun` (`r nombre$dpto`)
 
 ## Presentación
 
