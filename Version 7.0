@@ -1,0 +1,128 @@
+\documentclass[12pt]{article}
+\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenx}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\graphicspath{ {imagen/} }
+
+
+\title{Informe municipal de seguridad y convivencia ciudadana}
+\author{Departamento Nacional de Planeaci\'on - Polic\'ia Nacional - \\ Fiscal\'a General de la Naci\'on - Ministerio de Justicia y del Derecho - \\ Instituto Nacional de Medicina Legal y Ciencias Forenses}
+\date{Abril 2016}
+
+
+\begin{document}
+
+\maketitle
+\includegraphics[scale = 0.45]{logos}
+\tableofcontents
+
+<<Bases, echo=FALSE, warning=FALSE, comment=FALSE>>=
+setwd("D:/Documentos/3. Batería/3.3. Bases de datos/Dropbox/Bases")
+load("div.RData")
+load("t_pob.RData")
+load("den.RData")
+load("t_hom.RData")
+load("hom.RData")
+load("hcio.RData")
+load("t_hcio.RData")
+load("hper.RData")
+load("t_hper.RData")
+load("hres.RData")
+load("t_hres.RData")
+load("hveh.RData")
+load("t_hveh.RData")
+load("les.RData")
+load("t_les.RData")
+load("t_vif.RData")
+load("dsex.RData")
+load("t_dsex.RData")
+@
+
+<<Paquetes, echo=FALSE, comment=FALSE, warning=FALSE, message=FALSE>>=
+library(dplyr)
+library(ggplot2)
+library(grid)
+library(reshape)
+library(xtable)
+@
+
+<<Municipio, echo=FALSE>>=
+i <- 779
+
+if (i < 5001) {
+    x <- div$codmu[i]; x
+} else {
+    x <- i; x
+}
+
+y <- filter(div, codmun == x)
+y = y$coddpto
+
+ini = 2011
+fin = 2014
+@
+
+<<Población, echo=FALSE>>=
+n_pob <- group_by(t_pob, anno)
+n_pob <- summarise(n_pob, Npob = sum(pob), Npobc = sum(pobc), Npobr = sum(pobr))
+n_pob <- filter(n_pob, anno %in% ini:fin)
+d_pob <- group_by(t_pob, coddpto, anno)
+d_pob <- summarise(d_pob, Dpob = sum(pob), Dpobc = sum(pobc), Dpobr = sum(pobr))
+d_pob <- filter(d_pob, anno %in% ini:fin)
+d_pob$id <- paste(d_pob$coddpto, d_pob$anno, sep = "_")
+@
+
+<<Nombre, echo=FALSE>>=
+nombre <- filter(div, codmun == x)
+@
+
+
+\section{Municipio de \Sexpr{nombre$mun} (\Sexpr{nombre$dpto})}
+
+El presente documento constituye una recopilación de los principales indicadores de seguridad y convivencia ciudadana del municipio de \Sexpr{nombre$mun}. Esta es una herramienta de apoyo para la formulación de los Planes Integrales de Seguridad y Convivencia Ciudadana (PISCC), el cual debe ser implementado en el primer año de gobierno. Las entidades del orden nacional están comprometidas en apoyar los procesos en el territorio, brindando herramientas técnicas que permitan una mejor y más efectiva gestión de las políticas municipales. 
+
+La elaboración del documento hace uso de los sistemas de información de \href{http://oasportal.policia.gov.co/imagenes_ponal/dijin/observatorio/cicri/cifras.html}{\underline{Policía Nacional}}, \href{http://www.medicinalegal.gov.co/forensis}{\underline{Instituto Nacional de Medicina Legal}}, \href{http://www.fiscalia.gov.co/colombia/gestion/estadisticas/}{\underline{Fiscalía General}} y \href{https://www.minjusticia.gov.co/Inicio.aspx}{\underline{Ministerio de Justicia y del Derecho}}. Al hacer 'click' en cada uno de los enlaces, éstos lo llevarán a la respectiva página web de la entidad en donde se encuentra esta información, la cual es de carácter abierto. El informe está estructurado de tal forma que permita visualizar de manera clara y sencilla los delitos que más afectan a la población de \Sexpr{nombre$mun}. Asimismo, permite identificar la oferta que el municipio tiene a disposición, que si bien puede no encontrarse directamente en \Sexpr{nombre$mun}, sí está disponible en el departamento de \Sexpr{nombre$dpto}. 
+
+En la primera parte se presenta el listado de los delitos con mayor número de denuncias en el municipio de \Sexpr{nombre$mun} entre 2012 y el 30 de noviembre de 2015. Luego se encuentra el mapa de Oferta Institucional de Justicia del departamento de \Sexpr{nombre$dpto}, en donde se especifica la presencia de \textit{Justicia Formal}: \textit{Juzgados}, Fiscalía, Medicina Legal y \textit{C.T.I.}, así como \textit{Justicia no Formal}: \textit{Casas de Justicia}, \textit{Centros de Conciliación} y \textit{Notarías}.
+
+En la siguiente parte se encuentran los indicadores de los delitos más importantes en materia de seguridad y convivencia ciudadana. En la primera sección de cada delito se muestra la tendencia de la \textit{tasa por cada 100.000 habitantes} entre los años \Sexpr{ini} y \Sexpr{fin}. Luego una desagregación que especifica el \textit{tipo de arma} utilizada en la comisión de los delitos, sexo de la víctima y \textit{zona} de ocurrencia de los hechos, ésto para los delitos de \textit{Homicidio}, \textit{Hurtos} y \textit{Lesiones personales}. Para el caso de \textit{Violencia intrafamiliar} se desagrega por \textit{rango etario} y sexo. Para los \textit{delitos sexuales} se desagregan por sexo y zona de ocurrencia junto al \textit{tipo penal} del delito sexual.
+
+Al final del documento se encuentran un Anexo que corresponde al glosario con los términos señalados en \textit{cursiva} en la presente introducción, ello con el objetivo de ofrecer una mejor comprensión de la información aquí consignada. Cualquier inquietud, duda o deseo de profundizar en la información del presente documento, puede comunicarse al correo \underline{soportepiscc@dnp.gov.co}.
+
+\section{Denuncias}
+
+<<Grafico Denuncias, echo=FALSE, fig.height=5>>=
+den.x <- filter(den, codmun == x)
+n <- nrow(den.x)
+texto <- "La Figura 1 muestra los cinco delitos con mayor registro de denuncias entre 2012 y 30 de noviembre de 2015 para el municipio (Ncasos). Cada delito se identifica con el correspondiente Artículo (art) del Código Penal (Ley 599 de 2000). Tenga en cuenta que es posible que delitos ocurrido en otros municipios sean denunciados en su municipio, así como delitos ocurrido en el municipio que son denunciados en otros municipios."
+if (n == 0) {
+    den.x <- data.frame(anno = ini:fin, codmun = (x), casos = c(0,0), art = c("NA"))
+    texto <- "Entre 2010 y 30 de noviembre de 2015 no se registraron denuncias en el municipio"
+} else {
+    den.x <- filter(den, codmun == x)
+}
+den.x <- group_by(den.x, art)
+den.x <- summarise(den.x, Ncasos = sum(casos))
+den.x <- arrange(den.x, desc(Ncasos))
+n <- nrow(den.x) - 1
+den.x <- mutate(den.x, seq = 0:n)
+den.x <- filter(den.x, seq < 5)
+den.x$delito <- den$delito[match(den.x$art, den$art)]
+n <- nrow(den.x)
+den.x$seq <- NULL
+den.x <- subset(den.x, select = c("art", "delito", "Ncasos"))
+
+ggplot(den.x, aes(x=reorder(art, Ncasos), fill="skyblue1", Ncasos)) + geom_bar(stat = "identity") + coord_flip() + labs(title = "Figura 1: Delitos con mayor numero de denuncias en el municipio (2010-2015) \n \ ", x="Delito denunciado", y="Numero de casos (2012-2015)") + theme(legend.position = "none", plot.title = element_text(size = 13))
+@
+
+<<Tabla Denuncias, echo=FALSE, message=FALSE, warning=FALSE, results='asis'>>=
+tabla <- xtable(den.x)
+print(tabla, scalebox = 0.7)
+@
+
+\Sexpr{texto} Fuente: Fiscalía General de la Nación.
+
+\end{document}
