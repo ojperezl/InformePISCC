@@ -143,7 +143,7 @@ hom_nal <- summarise(hom_nal, Nal.casos = sum(casos))
 hom_nal <- filter(hom_nal, anno %in% ini:fin)
 hom_nal$Npob <- n_pob$Npob[match(hom_nal$anno, n_pob$anno)]
 hom_nal <- mutate(hom_nal, TNal = ((Nal.casos*100000)/Npob))
-hom_nal <- select(hom_nal, anno, TNal)
+hom_nal <- select(hom_nal, anno, Nal.casos, TNal)
 hom_nal <- round(hom_nal, 1)
 
 hom_dpto <- group_by(hom, coddpto, anno)
@@ -152,12 +152,14 @@ hom_dpto <- filter(hom_dpto, anno %in% ini:fin, coddpto == y)
 hom_dpto$id <- paste(hom_dpto$coddpto, hom_dpto$anno, sep = "_")
 hom_dpto$Dpob <- d_pob$Dpob[match(hom_dpto$id, d_pob$id)]
 hom_dpto <- mutate(hom_dpto, TDpto = ((Dep.casos*100000)/Dpob))
-hom_dpto <- select(hom_dpto, anno, TDpto)
+hom_dpto <- select(hom_dpto, anno, Dep.casos, TDpto)
 hom_dpto1 <- data.frame(anno = c(ini:fin), TDpto1 = c(0))
 hom_dpto1$TDpto <- hom_dpto$TDpto[match(hom_dpto1$anno, hom_dpto$anno)]
+hom_dpto1$Dep.casos <- hom_dpto$Dep.casos[match(hom_dpto1$anno, hom_dpto$anno)]
 hom_dpto <- hom_dpto1
 hom_dpto[is.na(hom_dpto)] <- 0
 hom_dpto <- round(hom_dpto, 1)
+hom_dpto <- mutate(hom_dpto, TDpto = (TDpto+TDpto1))
 
 t_hom.x1 <- filter(t_hom, anno %in% ini:fin, codmun == x)
 t_hom.x1 <- mutate(t_hom.x1, id = paste(t_hom.x1$codmun, t_hom.x1$anno, sep = "_"))
@@ -177,11 +179,12 @@ if (n == 0) {
 
 t_hom.x <- data.frame(anno = c(ini:fin), codmun = c(x), Tcasos = c(0:0))
 t_hom.x$id <- paste(t_hom.x$codmun, t_hom.x$anno, sep = "_")
+t_hom.x$Ncasos <- t_hom.x1$Ncasos[match(t_hom.x$id, t_hom.x1$id)]
 t_hom.x$Tcasos1 <- t_hom.x1$Tcasos[match(t_hom.x$id, t_hom.x1$id)]
-t_hom.x <- mutate(t_hom.x, Tcasos = Tcasos+Tcasos1)
+t_hom.x <- mutate(t_hom.x, Tcasos = (Tcasos+Tcasos1))
 t_hom.x[is.na(t_hom.x)] <- 0
 t_hom.x <- as.data.frame(t_hom.x)
-t_hom.x <- select(t_hom.x, anno, Tcasos)
+t_hom.x <- select(t_hom.x, anno, Ncasos, Tcasos)
 t_hom.x$Tcasos <- round(t_hom.x$Tcasos, 1)
 
 ghom <- Reduce(merge, list(hom_nal, hom_dpto, t_hom.x))
@@ -194,9 +197,12 @@ ggplot(data=ghom_long, aes(x=anno, y=value, colour = variable)) + geom_line(size
 
 Tabla 2. Homicidios: Número de casos y Tasa por cada 100.000 habitantes en el municipio de \Sexpr{nombre$mun}
 
-<<Homicidios tabla, echo=FALSE, results='asis'>>=
-tabla <- xtable(t_hom.x)
-print(tabla, scalebox = 0.7)
+<<Homicidios tabla, echo=FALSE, results='asis', size="large">>=
+anno <- data.frame(anno = c(ini:fin))
+tablaHom <- cbind(anno, hom_nal$TNal, hom_dpto$TDpto, t_hom.x$Tcasos, t_hom.x$Ncasos)
+colnames(tablaHom) <- c("Anno", "Tasa Nacional", "Tasa Departamento", "Tasa Municipio", "Casos Municipio")
+tablaHom <- xtable(tablaHom)
+print(tablaHom, scalebox = 0.7)
 @
 
 \end{document}
