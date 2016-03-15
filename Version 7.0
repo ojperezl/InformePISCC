@@ -1,7 +1,7 @@
 \documentclass[12pt]{article}
 \usepackage[latin1]{inputenc}
 \usepackage[utf8]{inputenx}
-\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage[margin=2.5cm]{geometry}
 \usepackage{hyperref}
 \usepackage{color}
 \usepackage[spanish]{babel}
@@ -50,7 +50,7 @@ library(xtable)
 @
 
 <<Municipio, echo=FALSE>>=
-i <- 779
+i <- 5001
 
 if (i < 5001) {
     x <- div$codmu[i]; x
@@ -84,7 +84,7 @@ nombre <- filter(div, codmun == x)
 
 El presente documento constituye una recopilación de los principales indicadores de seguridad y convivencia ciudadana del municipio de \Sexpr{nombre$mun}. Esta es una herramienta de apoyo para la formulación de los Planes Integrales de Seguridad y Convivencia Ciudadana (PISCC), el cual debe ser implementado en el primer año de gobierno. Las entidades del orden nacional están comprometidas en apoyar los procesos en el territorio, brindando herramientas técnicas que permitan una mejor y más efectiva gestión de las políticas municipales. 
 
-La elaboración del documento hace uso de los sistemas de información de \href{http://oasportal.policia.gov.co/imagenes_ponal/dijin/observatorio/cicri/cifras.html}{\underline{Policía Nacional}}, \href{http://www.medicinalegal.gov.co/forensis}{\underline{Instituto Nacional de Medicina Legal}}, \href{http://www.fiscalia.gov.co/colombia/gestion/estadisticas/}{\underline{Fiscalía General}} y \href{https://www.minjusticia.gov.co/Inicio.aspx}{\underline{Ministerio de Justicia y del Derecho}}. Al hacer 'click' en cada uno de los enlaces, éstos lo llevarán a la respectiva página web de la entidad en donde se encuentra esta información, la cual es de carácter abierto. El informe está estructurado de tal forma que permita visualizar de manera clara y sencilla los delitos que más afectan a la población de \Sexpr{nombre$mun}. Asimismo, permite identificar la oferta que el municipio tiene a disposición, que si bien puede no encontrarse directamente en \Sexpr{nombre$mun}, sí está disponible en el departamento de \Sexpr{nombre$dpto}. 
+El documento hace uso de los sistemas de información de las entidades involucradas: \href{http://oasportal.policia.gov.co/imagenes_ponal/dijin/observatorio/cicri/cifras.html}{\underline{la Policía Nacional}}, \href{http://www.medicinalegal.gov.co/forensis}{\underline{el Instituto Nacional de Medicina Legal}}, \href{http://www.fiscalia.gov.co/colombia/gestion/estadisticas/}{\underline{la Fiscalía General de la Nación}} y \href{https://www.minjusticia.gov.co/Inicio.aspx}{\underline{el Ministerio de Justicia y del Derecho}}. Al hacer 'click' en cada uno de los enlaces, éstos lo llevarán a la respectiva página web de la entidad en donde se encuentra esta información, la cual es de carácter abierto. El informe está estructurado de tal forma que permita visualizar de manera clara y sencilla los delitos que más afectan a la población de \Sexpr{nombre$mun}. Asimismo, permite identificar la oferta que el municipio tiene a disposición, que si bien puede no encontrarse directamente en \Sexpr{nombre$mun}, sí está disponible en el departamento de \Sexpr{nombre$dpto}. 
 
 En la primera parte se presenta el listado de los delitos con mayor número de denuncias en el municipio de \Sexpr{nombre$mun} entre 2012 y el 30 de noviembre de 2015. Luego se encuentra el mapa de Oferta Institucional de Justicia del departamento de \Sexpr{nombre$dpto}, en donde se especifica la presencia de \textit{Justicia Formal}: \textit{Juzgados}, Fiscalía, Medicina Legal y \textit{C.T.I.}, así como \textit{Justicia no Formal}: \textit{Casas de Justicia}, \textit{Centros de Conciliación} y \textit{Notarías}.
 
@@ -93,6 +93,8 @@ En la siguiente parte se encuentran los indicadores de los delitos más importan
 Al final del documento se encuentran un Anexo que corresponde al glosario con los términos señalados en \textit{cursiva} en la presente introducción, ello con el objetivo de ofrecer una mejor comprensión de la información aquí consignada. Cualquier inquietud, duda o deseo de profundizar en la información del presente documento, puede comunicarse al correo \underline{soportepiscc@dnp.gov.co}.
 
 \tableofcontents
+
+\clearpage
 
 \section{Denuncias}
 
@@ -131,7 +133,7 @@ print(tablaDen, scalebox = 0.7)
 
 \section{Mapa Oferta de Justicia}
 
-\includegraphics[width = 17cm, height = 22.666cm]{just_\Sexpr{y}}
+\includegraphics[width = 16cm, height = 21.333cm]{just_\Sexpr{y}}
 
 Elaboró: Departamento Nacional de Planeación
 
@@ -195,14 +197,107 @@ ghom_long <- melt(ghom, id = "anno")
 ggplot(data=ghom_long, aes(x=anno, y=value, colour = variable)) + geom_line(size = 1.3) + labs(title = "Figura 2: Tasa de Homicidio por 100.000 habitantes.\n \ Comparativo Nacional, Departamento y Municipio", x = "", y = "Tasa por 100.000 habitantes") + theme(legend.position = "top", plot.title = element_text(size = 12)) + scale_colour_manual(values = c("cyan", "blue", "red"))
 @
 
-Tabla 2. Homicidios: Número de casos y Tasa por cada 100.000 habitantes en el municipio de \Sexpr{nombre$mun}
+Tabla 2. Homicidios: Tasa por cada 100.000 habitantes a nivel Nacional, del Departamento y del Municipio y número de Casos en el municipio \Sexpr{nombre$mun}
 
-<<Homicidios tabla, echo=FALSE, results='asis', size="large">>=
+<<Homicidios tabla, echo=FALSE, results='asis'>>=
 anno <- data.frame(anno = c(ini:fin))
 tablaHom <- cbind(anno, hom_nal$TNal, hom_dpto$TDpto, t_hom.x$Tcasos, t_hom.x$Ncasos)
-colnames(tablaHom) <- c("Anno", "Tasa Nacional", "Tasa Departamento", "Tasa Municipio", "Casos Municipio")
+colnames(tablaHom) <- c("Año", "Tasa Nacional", "Tasa Departamento", "Tasa Municipio", "Casos Municipio")
 tablaHom <- xtable(tablaHom)
-print(tablaHom, scalebox = 0.7)
+digits(tablaHom) <- 1
+addtorow <- list()
+addtorow$pos <- list(0, 0)
+addtorow$command <- c("& \\multicolumn{4}{c}{Tasa} \\\\\n", "Año & Nacional & Departamento & Municipio & Casos \\\\\n")
+align(tablaHom) <- "cc|ccc|c"
+print(tablaHom, size = "small", add.to.row = addtorow, include.colnames = FALSE, include.rownames = FALSE, scalebox = 1)
 @
+
+Entre \Sexpr{ini} y \Sexpr{fin} \Sexpr{no}se registraron \Sexpr{sum} homicidios en \Sexpr{nombre$mun}. La Figura 2 compara la Tasa de homicidios \Sexpr{tmun} de \Sexpr{nombre$dpto} (línea azul) y la Tasa Nacional (línea azul clara). \Sexpr{figs}. Fuente: Policía Nacional.
+
+<<Homicidios 2, echo = FALSE, fig.height=4>>=
+hom_arma <- filter(hom, codmun == x, anno %in% ini:fin)
+hom_arma <- as.data.frame(table(arma = hom_arma$arma))
+hom_arma <- arrange(hom_arma, desc(Freq))
+hom_arma <- mutate(hom_arma, seq = 1:33)
+hom_arma <- mutate(hom_arma, eje = paste("Arma", hom_arma$seq))
+hom_arma <- filter(hom_arma, Freq > 0)
+hom_arma <- filter(hom_arma, seq <= 6)
+n <- nrow(hom_arma)
+if (n == 0) {
+    hom_arma <- data.frame(anno = c(ini:fin), Freq = c(0), seq = c(0), eje = "Sin Registro de casos para el periodo")
+}
+
+hom_sexo <- filter(hom, codmun == x, anno %in% ini:fin)
+hom_sexo <- as.data.frame(table(sexo = hom_sexo$sexo))
+hom_sexo <- arrange(hom_sexo, desc(Freq))
+hom_sexo <- filter(hom_sexo, sexo == "FEMENINO" | sexo == "MASCULINO")
+hom_sexo <- mutate(hom_sexo, porc = ((hom_sexo$Freq)/sum(Freq))*100)
+hom_sexo[is.na(hom_sexo)] <- 0
+hom_sexo <- mutate(hom_sexo, Periodo = "Periodo")
+
+hom_zona <- filter(hom, codmun == x, anno != 2014)
+hom_zona <- as.data.frame(table(zona = hom_zona$zona))
+hom_zona <- arrange(hom_zona, desc(Freq))
+hom_zona <- mutate(hom_zona, porc = ((hom_zona$Freq)/sum(Freq))*100)
+hom_zona[is.na(hom_zona)] <- 0
+hom_zona <- mutate(hom_zona, Periodo = "Periodo")
+
+p1 <- ggplot(hom_arma, aes(x=reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 3:\n \ Tipo de arma utilizada \n \ en los homicidios", x="Tipo de arma", y="Casos (2011-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+p2 <- ggplot(hom_sexo, aes(x=reorder(sexo, -Freq), porc, fill=sexo)) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 4:\n \ Homicidios sexo\n \ de la victima", x="2011-2014", y="Porcentaje de homicidios") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10)) + scale_fill_manual(values = c("cornflowerblue", "darkslateblue"))
+p3 <- ggplot(hom_zona, aes(x=reorder(zona, -Freq), porc, fill=zona)) + geom_bar(stat = "identity") + coord_flip() +  labs(title="Figura 5:\n \ Homicidios\n \ tipo de zona", x="2011-2014", y="Porcentaje de homicidios") + theme(legend.position = "none") + scale_fill_manual(values = c("MediumSeaGreen", "ForestGreen")) + theme(plot.title = element_text(size = 10))
+
+vplayout <- function(x,y) viewport(layout.pos.row = x, layout.pos.col = y)
+grid.newpage()
+pushViewport(viewport(layout = grid.layout(2,4)))
+print(p1, vp = vplayout(1:2,1:2))
+print(p2, vp = vplayout(1,3:4))
+print(p3, vp = vplayout(2,3:4))
+@
+
+
+Tabla 3. Tipo de arma utilizada en los homicidios
+<<Homicidios 2 tabla, echo=FALSE, results='asis'>>=
+hom_arma <- select(hom_arma, eje, arma, Freq)
+colnames(hom_arma) <- c("eje", "Tipo de arma", "Casos")
+hom_arma <- xtable(hom_arma)
+align(hom_arma) <- "cclc"
+print(hom_arma, size = "small", include.rownames = FALSE, scalebox = 1)
+@
+
+Table 4. Homicidios por sexo de la víctima
+<<Homicidios 3 tabla, echo=FALSE, results='asis'>>=
+hom_sexo <- select(hom_sexo, sexo, porc)
+colnames(hom_sexo) <- c("Sexo", "Porcentaje (%)")
+hom_sexo <- xtable(hom_sexo)
+digits(hom_sexo) <- 1
+print(hom_sexo, size = "small", include.rownames = FALSE, scalebox = 1)
+@
+
+Tabla 5. Homicidios por tipo de zona
+<<Homicidios 4 tabla, echo=FALSE, results='asis'>>=
+hom_zona <- select(hom_zona, zona, porc)
+colnames(hom_zona) <- c("Zona", "Porcentaje (%)")
+hom_zona <- xtable(hom_zona)
+digits(hom_zona) <- 1
+print(hom_zona, size = "small", include.rownames = FALSE, scalebox = 1)
+@
+
+\clearpage
+
+\section{Hurto a comercio}
+\clearpage
+\section{Hurto a personas}
+\clearpage
+\section{Hurto a residencias}
+\clearpage
+\section{Hurto a vehículos}
+\clearpage
+\section{Lesiones personales}
+\clearpage
+\section{Violencia intrafamiliar}
+\clearpage
+\section{Delitos sexuales}
+\clearpage
+\section{Anexo: Glosario}
 
 \end{document}
