@@ -10,7 +10,7 @@
 
 
 \title{Informe municipal de seguridad y convivencia ciudadana}
-\author{Departamento Nacional de Planeaci\'on - Polic\'ia Nacional - \\ Fiscal\'a General de la Naci\'on - Ministerio de Justicia y del Derecho - \\ Instituto Nacional de Medicina Legal y Ciencias Forenses}
+\author{Departamento Nacional de Planeaci\'on - Polic\'ia Nacional - \\ Fiscal\'ia General de la Naci\'on - Ministerio de Justicia y del Derecho - \\ Instituto Nacional de Medicina Legal y Ciencias Forenses}
 \date{Abril 2016}
 
 
@@ -75,22 +75,25 @@ d_pob <- filter(d_pob, anno %in% ini:fin)
 d_pob$id <- paste(d_pob$coddpto, d_pob$anno, sep = "_")
 @
 
-<<Nombre, echo=FALSE>>=
+<<Nombre, echo=FALSE, message=FALSE>>=
 nombre <- filter(div, codmun == x)
 @
 
+\Sexpr{nombre$mun} (\Sexpr{nombre$dpto})
 
 \section{Municipio de \Sexpr{nombre$mun} (\Sexpr{nombre$dpto})}
 
 El presente documento constituye una recopilación de los principales indicadores de seguridad y convivencia ciudadana del municipio de \Sexpr{nombre$mun}. Esta es una herramienta de apoyo para la formulación de los Planes Integrales de Seguridad y Convivencia Ciudadana (PISCC), el cual debe ser implementado en el primer año de gobierno. Las entidades del orden nacional están comprometidas en apoyar los procesos en el territorio, brindando herramientas técnicas que permitan una mejor y más efectiva gestión de las políticas municipales. 
 
-El documento hace uso de los sistemas de información de las entidades involucradas: \href{http://oasportal.policia.gov.co/imagenes_ponal/dijin/observatorio/cicri/cifras.html}{\underline{la Policía Nacional}}, \href{http://www.medicinalegal.gov.co/forensis}{\underline{el Instituto Nacional de Medicina Legal}}, \href{http://www.fiscalia.gov.co/colombia/gestion/estadisticas/}{\underline{la Fiscalía General de la Nación}} y \href{https://www.minjusticia.gov.co/Inicio.aspx}{\underline{el Ministerio de Justicia y del Derecho}}. Al hacer 'click' en cada uno de los enlaces, éstos lo llevarán a la respectiva página web de la entidad en donde se encuentra esta información, la cual es de carácter abierto. El informe está estructurado de tal forma que permita visualizar de manera clara y sencilla los delitos que más afectan a la población de \Sexpr{nombre$mun}. Asimismo, permite identificar la oferta que el municipio tiene a disposición, que si bien puede no encontrarse directamente en \Sexpr{nombre$mun}, sí está disponible en el departamento de \Sexpr{nombre$dpto}. 
+El documento hace uso de los sistemas de información de las entidades involucradas: \href{http://oasportal.policia.gov.co/imagenes_ponal/dijin/observatorio/cicri/cifras.html}{\underline{la Policía Nacional}}, \href{http://www.medicinalegal.gov.co/forensis}{\underline{el Instituto Nacional de Medicina Legal}}, \href{http://www.fiscalia.gov.co/colombia/gestion/estadisticas/}{\underline{la Fiscalía General de la Nación}} y \href{https://www.minjusticia.gov.co/Inicio.aspx}{\underline{el Ministerio de Justicia y del Derecho}}. Al hacer 'click' en cada uno de los enlaces, éstos lo llevarán a la respectiva página web de la entidad en donde se encuentra esta información, la cual es de carácter público y de libre acceso. El informe está estructurado de tal forma que permita visualizar de manera clara y sencilla los delitos que más afectan a la población de \Sexpr{nombre$mun}. Asimismo, permite identificar la oferta que el municipio tiene a disposición, que si bien puede no encontrarse directamente en \Sexpr{nombre$mun}, sí está disponible en el departamento de \Sexpr{nombre$dpto}. 
 
-En la primera parte se presenta el listado de los delitos con mayor número de denuncias en el municipio de \Sexpr{nombre$mun} entre 2012 y el 30 de noviembre de 2015. Luego se encuentra el mapa de Oferta Institucional de Justicia del departamento de \Sexpr{nombre$dpto}, en donde se especifica la presencia de \textit{Justicia Formal}: \textit{Juzgados}, Fiscalía, Medicina Legal y \textit{C.T.I.}, así como \textit{Justicia no Formal}: \textit{Casas de Justicia}, \textit{Centros de Conciliación} y \textit{Notarías}.
+En la primera parte (numeral 1) se presenta el listado de los delitos con mayor número de denuncias en el municipio de \Sexpr{nombre$mun} entre 2012 y el 30 de noviembre de 2015. Luego (numeral 2) se encuentra el mapa de Oferta Institucional de Justicia del departamento de \Sexpr{nombre$dpto}, en donde se especifica la presencia de \textit{Justicia Formal}: \textit{Juzgados}, Fiscalía, Medicina Legal y \textit{C.T.I.}, así como \textit{Justicia no Formal}: \textit{Casas de Justicia}, \textit{Centros de Conciliación} y \textit{Notarías}.
 
-En la siguiente parte se encuentran los indicadores de los delitos más importantes en materia de seguridad y convivencia ciudadana. En la primera sección de cada delito se muestra la tendencia de la \textit{tasa por cada 100.000 habitantes} entre los años \Sexpr{ini} y \Sexpr{fin}. Luego una desagregación que especifica el \textit{tipo de arma} utilizada en la comisión de los delitos, sexo de la víctima y \textit{zona} de ocurrencia de los hechos, ésto para los delitos de \textit{Homicidio}, \textit{Hurtos} y \textit{Lesiones personales}. Para el caso de \textit{Violencia intrafamiliar} se desagrega por \textit{rango etario} y sexo. Para los \textit{delitos sexuales} se desagregan por sexo y zona de ocurrencia junto al \textit{tipo penal} del delito sexual.
+En la segunda parte (numerales 3 a 11) se encuentran los indicadores de los delitos más importantes en materia de seguridad y convivencia ciudadana. En la primera sección de cada delito se muestra el número de casos ocurridos en el municipio, así como la tendencia en \textit{tasa por cada 100.000 habitantes} entre los años \Sexpr{ini} y \Sexpr{fin} comparada con la tasa nacional y departamental. Luego una desagregación que especifica el \textit{tipo de arma} utilizada en la comisión de los delitos, sexo de la víctima y \textit{zona} de ocurrencia de los hechos; ésto para los delitos de \textit{Homicidio}, \textit{Hurtos} y \textit{Lesiones personales}. Para los \textit{delitos sexuales} se desagregan por sexo y zona de ocurrencia junto al \textit{tipo penal} del delito sexual. Para el caso de \textit{Violencia intrafamiliar} se desagrega por \textit{rango etario} y sexo.
 
 Al final del documento se encuentran un Anexo que corresponde al glosario con los términos señalados en \textit{cursiva} en la presente introducción, ello con el objetivo de ofrecer una mejor comprensión de la información aquí consignada. Cualquier inquietud, duda o deseo de profundizar en la información del presente documento, puede comunicarse al correo \underline{soportepiscc@dnp.gov.co}.
+
+\clearpage
 
 \tableofcontents
 
@@ -101,7 +104,7 @@ Al final del documento se encuentran un Anexo que corresponde al glosario con lo
 <<Denuncias, echo=FALSE, fig.height=5>>=
 den.x <- filter(den, codmun == x)
 n <- nrow(den.x)
-texto <- "La Figura 1 muestra los cinco delitos con mayor registro de denuncias entre 2012 y 30 de noviembre de 2015 para el municipio (Ncasos). Cada delito se identifica con el correspondiente Artículo (art) del Código Penal (Ley 599 de 2000). Tenga en cuenta que es posible que delitos ocurrido en otros municipios sean denunciados en su municipio, así como delitos ocurrido en el municipio que son denunciados en otros municipios."
+texto <- "La Figura 1 muestra los cinco delitos con mayor registro de denuncias entre 2012 y 30 de noviembre de 2015 para el municipio (Casos). Cada delito se identifica con el correspondiente Artículo (Art.) del Código Penal (Ley 599 de 2000). Tenga en cuenta que es posible que delitos ocurrido en otros municipios sean denunciados en su municipio, así como delitos ocurrido en el municipio que son denunciados en otros municipios."
 if (n == 0) {
     den.x <- data.frame(anno = ini:fin, codmun = (x), casos = c(0,0), art = c("NA"))
     texto <- "Entre 2010 y 30 de noviembre de 2015 no se registraron denuncias en el municipio"
@@ -118,8 +121,9 @@ den.x$delito <- den$delito[match(den.x$art, den$art)]
 n <- nrow(den.x)
 den.x$seq <- NULL
 den.x <- subset(den.x, select = c("art", "delito", "Ncasos"))
+colnames(den.x) <- c("Art.", "Delito", "Casos")
 
-ggplot(den.x, aes(x=reorder(art, Ncasos), fill="skyblue1", Ncasos)) + geom_bar(stat = "identity") + coord_flip() + labs(title = "Figura 1: Delitos con mayor numero de denuncias en el municipio (2010-2015) \n \ ", x="Delito denunciado", y="Numero de casos (2012-2015)") + theme(legend.position = "none", plot.title = element_text(size = 13))
+ggplot(den.x, aes(x=reorder(Art., Casos), fill="skyblue1", Casos)) + geom_bar(stat = "identity") + coord_flip() + labs(title = "Figura 1: Delitos con mayor numero de denuncias en el municipio (2010-2015) \n \ ", x="Delito denunciado", y="Numero de casos") + theme(legend.position = "none", plot.title = element_text(size = 12))
 @
 
 Tabla 1. Denuncias: Número de registros en el municipio de \Sexpr{nombre$mun}
@@ -1255,5 +1259,18 @@ ggplot(gt_vifxs_long, aes(x = variable, y = value, fill = Sexo)) + geom_bar(stat
 \textit{Rango etario}: Se define como la agrupación de edades en rangos que definen características de tipo social, sicológico y físico de los individuos. Para este documento se definen los siguientes rangos: niños, niñas y adolescentes (0 a 17 años), jóvenes (18 a 28 años), adultos (29 a 59 años) y adulto Mayor (60 años o más). Fuente: Instituto Nacional de Medicina Legal y Ciencias Forenses.
 
 \textit{Tasa por cada 100.000 habitantes}: Se define como el número de casos presentados de un determinado delito en el municipio (N) por cada 100.000 habitantes sobre el total de la población del municipio (P). La fórmula de cálculo para el municipio es la siguiente:
+
+\begin{equation}
+Tasa = (N*100.000)/P
+\end{equation}
+
+\textit{Tipo de arma}: Artefacto mecánico o de acción manual que es utilizado para infringir un daño premeditado o consciente, o con el propósito de generar miedo y supresión de cualquier respuesta por parte de la víctima.
+
+\textit{Tipo penal}: De acuerdo al delito en meción, el código penal establece una tipología especial que da cuenta de las particularidades al momento de cometer el delito, así como las implicaciones legales y punitivas del mismo.
+
+\textit{Violencia intrafamiliar}: La violencia intrafamiliar, también nombrada como violencia familiar o violencia doméstica, puede incluir distintas formas de maltrato, desde intimidación hasta golpes, pasando por el acoso o los insultos. El violento puede ejercer su accionar contra un solo integrante de la familia (como su pareja o su hijo) o comportarse de forma violenta con todos \href{http://www.medicinalegal.gov.co/documents/88730/1656998/Forensis+Interactivo+2014.24-JULpdf.pdf/9085ad79-d2a9-4c0d-a17b-f845ab96534b}{Instituto Nacional de Medicina Legal}.
+
+\textit{Zona}: Por zona rural (término homologable a la definición de resto) se entiende la porción del territorio que está por fuera de la zona urbana (término homologable a definición de cabecera).
+
 
 \end{document}
