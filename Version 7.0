@@ -50,7 +50,7 @@ library(xtable)
 @
 
 <<Municipio, echo=FALSE>>=
-i <- 5001
+i <- 81001
 
 if (i < 5001) {
     x <- div$codmu[i]; x
@@ -62,7 +62,7 @@ y <- filter(div, codmun == x)
 y = y$coddpto
 
 ini = 2011
-fin = 2014
+fin = 2015
 @
 
 <<Población, echo=FALSE>>=
@@ -81,17 +81,24 @@ nombre <- filter(div, codmun == x)
 
 \Sexpr{nombre$mun} (\Sexpr{nombre$dpto})
 
-\section{Municipio de \Sexpr{nombre$mun} (\Sexpr{nombre$dpto})}
+\section{Presentación}
 
-El presente documento constituye una recopilación de los principales indicadores de seguridad y convivencia ciudadana del municipio de \Sexpr{nombre$mun}. Esta es una herramienta de apoyo para la formulación de los Planes Integrales de Seguridad y Convivencia Ciudadana (PISCC), el cual debe ser implementado en el primer año de gobierno. Las entidades del orden nacional están comprometidas en apoyar los procesos en el territorio, brindando herramientas técnicas que permitan una mejor y más efectiva gestión de las políticas municipales. 
+El presente documento\footnote{La elaboración del mismo hace uso de los sistemas de información de la Policía Nacional, el Instituto Nacional de Medicina Legal, la Fiscalía General de la Nación y el Ministerio de Justicia y del Derecho, los cuales pueden ser consultados en los respectivos enlaces: \\ \href{http://oasportal.policia.gov.co/imagenes_ponal/dijin/observatorio/cicri/cifras.html}{\underline{Policía Nacional}} \\ \href{http://www.medicinalegal.gov.co/forensis}{\underline{Instituto Nacional de Medicina Legal}} \\ \href{http://www.fiscalia.gov.co/colombia/gestion/estadisticas/}{\underline{Fiscalía General de la Nación}} \\ \href{https://www.minjusticia.gov.co/Inicio.aspx}{\underline{Ministerio de Justicia y del Derecho}}.} compila algunos de los principales indicadores de seguridad y convivencia ciudadana del municipio de \Sexpr{nombre$mun}. Esta es una herramienta de apoyo para la formulación de los Planes Integrales de Seguridad y Convivencia Ciudadana (PISCC), el cual debe ser implementado en el primer año de gobierno.
+\\
 
-El documento hace uso de los sistemas de información de las entidades involucradas: \href{http://oasportal.policia.gov.co/imagenes_ponal/dijin/observatorio/cicri/cifras.html}{\underline{la Policía Nacional}}, \href{http://www.medicinalegal.gov.co/forensis}{\underline{el Instituto Nacional de Medicina Legal}}, \href{http://www.fiscalia.gov.co/colombia/gestion/estadisticas/}{\underline{la Fiscalía General de la Nación}} y \href{https://www.minjusticia.gov.co/Inicio.aspx}{\underline{el Ministerio de Justicia y del Derecho}}. Al hacer 'click' en cada uno de los enlaces, éstos lo llevarán a la respectiva página web de la entidad en donde se encuentra esta información, la cual es de carácter público y de libre acceso. El informe está estructurado de tal forma que permita visualizar de manera clara y sencilla los delitos que más afectan a la población de \Sexpr{nombre$mun}. Asimismo, permite identificar la oferta que el municipio tiene a disposición, que si bien puede no encontrarse directamente en \Sexpr{nombre$mun}, sí está disponible en el departamento de \Sexpr{nombre$dpto}. 
+Es fundamental tener en cuenta que la información estadística muestra solo una parte del panorama de la seguridad y la convivencia ciudadana, por esto, es necesario completar la información contenida en este informe con \textbf{información cualitativa}, aprovechando el conocimiento que tienen diferentes actores sobre el territorio tanto para el diagnóstico, como para la planeación, implementación y seguimiento del PISCC. En particular recomendamos consultar a \textbf{inspectores de policía}, \textbf{comisarías de familia}, \textbf{personeros}, \textbf{defensores del pueblo}, \textbf{miembros de organizaciones sociales}, \textbf{personal de salud y educación de la entidad territorial}, \textbf{jueces}, \textbf{representantes gremiales} y en especial a la \textbf{comunidad}, sobre las afectaciones y factores de riesgo que afectan la convivencia y la seguridad en su municipio o departamento.
+\\
 
-En la primera parte (numeral 1) se presenta el listado de los delitos con mayor número de denuncias en el municipio de \Sexpr{nombre$mun} entre 2012 y el 30 de noviembre de 2015. Luego (numeral 2) se encuentra el mapa de Oferta Institucional de Justicia del departamento de \Sexpr{nombre$dpto}, en donde se especifica la presencia de \textit{Justicia Formal}: \textit{Juzgados}, Fiscalía, Medicina Legal y \textit{C.T.I.}, así como \textit{Justicia no Formal}: \textit{Casas de Justicia}, \textit{Centros de Conciliación} y \textit{Notarías}.
+En la primera parte se presenta el listado de los delitos con mayor número de denuncias en el municipio de \Sexpr{nombre$mun} entre 2012 y el 30 de noviembre de 2015. Luego se encuentra el mapa de Oferta Institucional de Justicia del departamento de \Sexpr{nombre$dpto}, en donde se especifica la presencia de \textit{Justicia Formal}: \textit{Juzgados}, Fiscalía, Medicina Legal y \textit{C.T.I.}, así como \textit{Justicia no Formal}: \textit{Casas de Justicia}, \textit{Centros de Conciliación} y \textit{Notarías}.
+\\
 
-En la segunda parte (numerales 3 a 11) se encuentran los indicadores de los delitos más importantes en materia de seguridad y convivencia ciudadana. En la primera sección de cada delito se muestra el número de casos ocurridos en el municipio, así como la tendencia en \textit{tasa por cada 100.000 habitantes} entre los años \Sexpr{ini} y \Sexpr{fin} comparada con la tasa nacional y departamental. Luego una desagregación que especifica el \textit{tipo de arma} utilizada en la comisión de los delitos, sexo de la víctima y \textit{zona} de ocurrencia de los hechos; ésto para los delitos de \textit{Homicidio}, \textit{Hurtos} y \textit{Lesiones personales}. Para los \textit{delitos sexuales} se desagregan por sexo y zona de ocurrencia junto al \textit{tipo penal} del delito sexual. Para el caso de \textit{Violencia intrafamiliar} se desagrega por \textit{rango etario} y sexo.
+En la siguiente parte se encuentran los indicadores de los delitos más importantes en materia de seguridad y convivencia ciudadana. En la primera sección de cada delito se muestra la tendencia de la \textit{tasa por cada 100.000 habitantes} entre los años \Sexpr{ini} y \Sexpr{fin} comparada con la tasa nacional y departamental. Luego una desagregación que especifica el \textit{tipo de arma} utilizada en la comisión de los delitos, sexo de la víctima y \textit{zona} de ocurrencia de los hechos; ésto para los delitos de \textit{Homicidio}, \textit{Hurtos} y \textit{Lesiones personales}. Para los \textit{delitos sexuales} se desagregan por sexo y zona de ocurrencia junto al \textit{tipo penal} del delito sexual. Para el caso de \textit{Violencia intrafamiliar} se desagrega por \textit{rango etario} y sexo.
+\\
 
-Al final del documento se encuentran un Anexo que corresponde al glosario con los términos señalados en \textit{cursiva} en la presente introducción, ello con el objetivo de ofrecer una mejor comprensión de la información aquí consignada. Cualquier inquietud, duda o deseo de profundizar en la información del presente documento, puede comunicarse al correo \underline{soportepiscc@dnp.gov.co}.
+Al final del documento se encuentran un Anexo que corresponde al glosario con los términos señalados en \textit{cursiva} en la presente introducción, ello con el objetivo de ofrecer una mejor comprensión de la información aquí consignada. 
+\\
+
+Las entidades del orden nacional están comprometidas en apoyar los procesos en el territorio, brindando herramientas técnicas que permitan una mejor y más efectiva gestión de las políticas municipales, por esto estamos atentos a atender cualquier inquietud, duda o deseo de profundizar en la información del presente documento mediante el correo \underline{soportepiscc@dnp.gov.co}.
 
 \clearpage
 
@@ -99,9 +106,9 @@ Al final del documento se encuentran un Anexo que corresponde al glosario con lo
 
 \clearpage
 
-\section{Denuncias}
+\section{Denuncias (Fiscalía General de la Nación)}
 
-<<Denuncias, echo=FALSE, fig.height=5>>=
+<<Denuncias, echo=FALSE, fig.height=5, error=FALSE>>=
 den.x <- filter(den, codmun == x)
 n <- nrow(den.x)
 texto <- "La Figura 1 muestra los cinco delitos con mayor registro de denuncias entre 2012 y 30 de noviembre de 2015 para el municipio (Casos). Cada delito se identifica con el correspondiente Artículo (Art.) del Código Penal (Ley 599 de 2000). Tenga en cuenta que es posible que delitos ocurrido en otros municipios sean denunciados en su municipio, así como delitos ocurrido en el municipio que son denunciados en otros municipios."
@@ -128,20 +135,20 @@ ggplot(den.x, aes(x=reorder(Art., Casos), fill="skyblue1", Casos)) + geom_bar(st
 
 Tabla 1. Denuncias: Número de registros en el municipio de \Sexpr{nombre$mun}
 
-<<Tabla 1, echo=FALSE, message=FALSE, warning=FALSE, results='asis'>>=
+<<Tabla 1, echo=FALSE, message=FALSE, warning=FALSE, results='asis', error=FALSE>>=
 tablaDen <- xtable(den.x)
 print(tablaDen, scalebox = 0.7)
 @
 
 \Sexpr{texto} Fuente: Fiscalía General de la Nación.
 
-\section{Mapa Oferta de Justicia}
+\section{Oferta Justicia (Min. de Justicia y del Derecho)}
 
 \includegraphics[width = 16cm, height = 21.333cm]{just_\Sexpr{y}}
 
 Elaboró: Departamento Nacional de Planeación
 
-\section{Homicidios}
+\section{Homicidios (Policía Nacional)}
 
 <<Homicidios 1, echo=FALSE, fig.height=5>>=
 hom_nal <- group_by(hom, anno)
@@ -222,7 +229,7 @@ Entre \Sexpr{ini} y \Sexpr{fin} \Sexpr{no}se registraron \Sexpr{sum} homicidios 
 hom_arma <- filter(hom, codmun == x, anno %in% ini:fin)
 hom_arma <- as.data.frame(table(arma = hom_arma$arma))
 hom_arma <- arrange(hom_arma, desc(Freq))
-hom_arma <- mutate(hom_arma, seq = 1:33)
+hom_arma <- mutate(hom_arma, seq = 1:36)
 hom_arma <- mutate(hom_arma, eje = paste("Arma", hom_arma$seq))
 hom_arma <- filter(hom_arma, Freq > 0)
 hom_arma <- filter(hom_arma, seq <= 6)
@@ -239,16 +246,16 @@ hom_sexo <- mutate(hom_sexo, porc = ((hom_sexo$Freq)/sum(Freq))*100)
 hom_sexo[is.na(hom_sexo)] <- 0
 hom_sexo <- mutate(hom_sexo, Periodo = "Periodo")
 
-hom_zona <- filter(hom, codmun == x, anno != 2014)
+hom_zona <- filter(hom, codmun == x, anno %in% ini:fin)
 hom_zona <- as.data.frame(table(zona = hom_zona$zona))
 hom_zona <- arrange(hom_zona, desc(Freq))
 hom_zona <- mutate(hom_zona, porc = ((hom_zona$Freq)/sum(Freq))*100)
 hom_zona[is.na(hom_zona)] <- 0
 hom_zona <- mutate(hom_zona, Periodo = "Periodo")
 
-p1 <- ggplot(hom_arma, aes(x=reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 3:\n \ Tipo de arma utilizada \n \ en los homicidios", x="Tipo de arma", y="Casos (2011-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
-p2 <- ggplot(hom_sexo, aes(x=reorder(sexo, -Freq), porc, fill=sexo)) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 4:\n \ Homicidios sexo\n \ de la victima", x="2011-2014", y="Porcentaje de homicidios") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10)) + scale_fill_manual(values = c("cornflowerblue", "darkslateblue"))
-p3 <- ggplot(hom_zona, aes(x=reorder(zona, -Freq), porc, fill=zona)) + geom_bar(stat = "identity") + coord_flip() +  labs(title="Figura 5:\n \ Homicidios\n \ tipo de zona", x="2011-2014", y="Porcentaje de homicidios") + theme(legend.position = "none") + scale_fill_manual(values = c("MediumSeaGreen", "ForestGreen")) + theme(plot.title = element_text(size = 10))
+p1 <- ggplot(hom_arma, aes(x=reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 3:\n \ Tipo de arma utilizada \n \ en los homicidios", x="Tipo de arma", y="Casos (2011-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+p2 <- ggplot(hom_sexo, aes(x=reorder(sexo, -Freq), porc, fill=sexo)) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 4:\n \ Homicidios sexo\n \ de la victima", x="2011-2015", y="Porcentaje de homicidios") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10)) + scale_fill_manual(values = c("cornflowerblue", "darkslateblue"))
+p3 <- ggplot(hom_zona, aes(x=reorder(zona, -Freq), porc, fill=zona)) + geom_bar(stat = "identity") + coord_flip() +  labs(title="Figura 5:\n \ Homicidios\n \ tipo de zona", x="2011-2015", y="Porcentaje de homicidios") + theme(legend.position = "none") + scale_fill_manual(values = c("MediumSeaGreen", "ForestGreen")) + theme(plot.title = element_text(size = 10))
 
 vplayout <- function(x,y) viewport(layout.pos.row = x, layout.pos.col = y)
 grid.newpage()
@@ -288,7 +295,7 @@ print(hom_zona, size = "small", include.rownames = FALSE, scalebox = 1)
 
 \clearpage
 
-\section{Hurto a comercio}
+\section{Hurto a comercio (Policía Nacional)}
 
 <<Hurto a comercio 1, echo=FALSE, fig.height=5>>=
 t_hcio_nal <- t_hcio
@@ -354,7 +361,7 @@ hcio_zona <- mutate(hcio_zona, seq = 1:n)
 hcio_zona$porc <- round(hcio_zona$porc, digits = 1)
 z1 <- filter(hcio_zona, seq == 1)
 z2 <- filter(hcio_zona, seq == 2)
-zon1 <- "% de los casos se registraron en zona "
+zon1 <- " porciento de los casos se registraron en zona "
 zon2 <- " y el restante en zona "
 cm <- ", "
 if (nx == 0) {
@@ -387,7 +394,7 @@ hcio_arma <- select(hcio, anno, codmun, arma)
 hcio_arma <- filter(hcio_arma, anno %in% ini:fin, codmun == x)
 hcio_arma <- as.data.frame(table(arma = hcio_arma$arma))
 hcio_arma <- arrange(hcio_arma, desc(Freq))
-hcio_arma <- mutate(hcio_arma, seq = 1:9)
+hcio_arma <- mutate(hcio_arma, seq = 1:8)
 hcio_arma <- mutate(hcio_arma, eje = paste("Arma", hcio_arma$seq))
 hcio_arma <- filter(hcio_arma, Freq > 0)
 hcio_arma <- filter(hcio_arma, seq <= 5)
@@ -400,7 +407,7 @@ hcio_lugar <- select(hcio, anno, codmun, lugar)
 hcio_lugar <- filter(hcio_lugar, anno %in% ini:fin, codmun == x)
 hcio_lugar <- as.data.frame(table(lugar = hcio_lugar$lugar))
 hcio_lugar <- arrange(hcio_lugar, desc(Freq))
-hcio_lugar <- mutate(hcio_lugar, seq = 1:80)
+hcio_lugar <- mutate(hcio_lugar, seq = 1:234)
 hcio_lugar <- mutate(hcio_lugar, eje = paste("Lugar", hcio_lugar$seq))
 hcio_lugar <- filter(hcio_lugar, Freq > 0)
 hcio_lugar <- filter(hcio_lugar, seq <= 5)
@@ -409,9 +416,9 @@ if (n == 0) {
     hcio_lugar <- data.frame(anno = c(ini:fin), Freq = c(0), seq = c(0), eje = "Sin Registro de casos para el periodo")
 }
 
-phcio.a <- ggplot(hcio_arma, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 7:\n \ Tipo de arma utilizada\n \ en hurto a comercio", x="Tipo de arma", y="Casos (2011-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+phcio.a <- ggplot(hcio_arma, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 7:\n \ Tipo de arma utilizada\n \ en hurto a comercio", x="Tipo de arma", y="Casos (2011-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
 
-phcio.l <- ggplot(hcio_lugar, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 8:\n \ Lugar del hurto\n \ a comercio", x="Lugar del hurto", y="Casos (2011-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+phcio.l <- ggplot(hcio_lugar, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 8:\n \ Lugar del hurto\n \ a comercio", x="Lugar del hurto", y="Casos (2011-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
 
 vplayout <- function(x,y) viewport(layout.pos.row = x, layout.pos.col = y)
 grid.newpage()
@@ -438,10 +445,11 @@ print(hcio_lugar, include.rownames=FALSE)
 
 \clearpage
 
-\section{Hurto a personas}
+\section{Hurto a personas (Policía Nacional)}
 
-<<Hurto a personas 1, echo=FALSE, warning=FALSE, fig.height=5>>=
+<<Hurto a personas 1, echo=FALSE, fig.height=5, warning=FALSE>>=
 t_hper_nal <- t_hper
+t_hper_nal[is.na(t_hper_nal)] <- 0
 t_hper_nal <- filter(t_hper_nal, anno %in% ini:fin)
 t_hper_nal <- group_by(t_hper_nal, anno)
 t_hper_nal <- summarise(t_hper_nal, Nalcasos = sum(Ncasos))
@@ -449,6 +457,7 @@ t_hper_nal <- mutate(t_hper_nal, TNacional = (Nalcasos*100000)/n_pob$Npob)
 t_hper_nal <- round(t_hper_nal, 1)
 
 t_hper_dpto <- t_hper
+t_hper_nal[is.na(t_hper_nal)] <- 0
 t_hper_dpto <- filter(t_hper_dpto, anno %in% ini:fin, coddpto == y)
 t_hper_dpto <- group_by(t_hper_dpto, anno, coddpto)
 t_hper_dpto <- summarise(t_hper_dpto, Depcasos = sum(Ncasos))
@@ -459,21 +468,22 @@ t_hper_dpto <- round(t_hper_dpto, 1)
 
 t_hper.x1 <- filter(t_hper, anno %in% ini:fin, codmun == x)
 t_hper.x1[is.na(t_hper.x1)] <- 0
-t_hper.x1 <- as.data.frame(t_hper.x1)
 nx <- nrow(t_hper.x1)
 no <- NULL
 sum <- sum(t_hper.x1$Ncasos)
 tmun <- "del Municipio (linea roja) versus la Tasa"
-figs <- "La Figura 10 muestra los tipos de arma con mayor uso en los hurtos y la Figura 11 los principales lugares de ocurrencia."
+figs <- "La Figura 13 muestra los tipos de arma con mayor uso en los hurtos y la Figura 14 los principales lugares de ocurrencia."
+
 if (nx == 0) {
     t_hper.x1 <- data.frame(anno = c(ini:fin), codmun = c(x), Tcasos = c(0:0))
-    no <- "no "
+    no <- "no " 
     sum <- NULL
     tmun <- NULL
     figs <- "Consecuencia de lo anterior las siguientes Figuras no muestran los datos relacionados."
 } else {
     t_hper.x1 <- filter(t_hper, anno %in% ini:fin, codmun == x)
 }
+t_hper.x1$id <- paste(t_hper.x1$codmun, t_hper.x1$anno, sep = "_")
 
 t_hper.x <- data.frame(anno = c(ini:fin), codmun = c(x), Tcasos = c(0:0), Ncasos = c(0:0))
 t_hper.x$id <- paste(t_hper.x$codmun, t_hper.x$anno, sep = "_")
@@ -503,7 +513,7 @@ hper_zona$porc <- round(hper_zona$porc, digits = 1)
 ns <- hper_zona$Freq
 z1 <- filter(hper_zona, seq == 1)
 z2 <- filter(hper_zona, seq == 2)
-zon1 <- "% de los casos se registraron en zona "
+zon1 <- " porciento de los casos se registraron en zona "
 zon2 <- " y el restante en zona "
 cm <- ", "
 if (ns == 0) {
@@ -515,6 +525,7 @@ if (ns == 0) {
 }
 @
 
+Tabla 9. Hurto a personas: Tasa por cada 100.000 habitantes a nivel Nacional, del Departamento y del Municipio y número de Casos en el municipio de \Sexpr{nombre$mun}
 <<Tabla 9, echo=FALSE, results='asis', error=FALSE>>=
 anno <- data.frame(anno = c(ini:fin))
 tablaHper <- cbind(anno, t_hper_nal$TNacional, t_hper_dpto$TDpto, t_hper.x$Tcasos, t_hper.x$Ncasos)
@@ -534,7 +545,7 @@ hper_arma <- select(hper, anno, codmun, arma)
 hper_arma <- filter(hper_arma, anno %in% ini:fin, codmun == x)
 hper_arma <- as.data.frame(table(arma = hper_arma$arma))
 hper_arma <- arrange(hper_arma, desc(Freq))
-hper_arma <- mutate(hper_arma, seq = 1:6)
+hper_arma <- mutate(hper_arma, seq = 1:10)
 hper_arma <- mutate(hper_arma, eje = paste("Arma", hper_arma$seq))
 hper_arma <- filter(hper_arma, Freq > 0)
 hper_arma <- filter(hper_arma, seq <= 5)
@@ -557,9 +568,9 @@ if (n == 0) {
     hper_lugar <- data.frame(anno = c(ini:fin), Freq = c(0), seq = c(0), eje = "Sin Registro de casos para el periodo")
 }
 
-phper.a <- ggplot(hper_arma, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 10:\n \ Tipo de arma utilizada \n \ en hurto a personas", x="Tipo de arma", y="Casos (2011-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+phper.a <- ggplot(hper_arma, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 10:\n \ Tipo de arma utilizada \n \ en hurto a personas", x="Tipo de arma", y="Casos (2011-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
 
-phper.l <- ggplot(hper_lugar, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 11:\n \ Lugar del hurto\n \ a personas", x="Lugar del hurto", y="Casos (2011-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+phper.l <- ggplot(hper_lugar, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 11:\n \ Lugar del hurto\n \ a personas", x="Lugar del hurto", y="Casos (2011-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
 
 vplayout <- function(x,y) viewport(layout.pos.row = x, layout.pos.col = y)
 grid.newpage()
@@ -586,7 +597,7 @@ print(hper_lugar, include.rownames=FALSE)
 
 \clearpage
 
-\section{Hurto a residencias}
+\section{Hurto a residencias (Policía Nacional)}
 
 <<Hurto a residencias 1, echo=FALSE, fig.height=5, warning=FALSE>>=
 t_hres_nal <- t_hres
@@ -652,7 +663,7 @@ hres_zona$porc <- round(hres_zona$porc, digits = 1)
 ns <- hres_zona$Freq
 z1 <- filter(hres_zona, seq == 1)
 z2 <- filter(hres_zona, seq == 2)
-zon1 <- "% de los casos se registraron en zona "
+zon1 <- " porciento de los casos se registraron en zona "
 zon2 <- " y el restante en zona "
 cm <- ", "
 if (ns == 0) {
@@ -685,7 +696,7 @@ hres_arma <- select(hres, anno, codmun, arma)
 hres_arma <- filter(hres_arma, anno %in% ini:fin, codmun == x)
 hres_arma <- as.data.frame(table(arma = hres_arma$arma))
 hres_arma <- arrange(hres_arma, desc(Freq))
-hres_arma <- mutate(hres_arma, seq = 1:6)
+hres_arma <- mutate(hres_arma, seq = 1:11)
 hres_arma <- mutate(hres_arma, eje = paste("Arma", hres_arma$seq))
 hres_arma <- filter(hres_arma, Freq > 0)
 hres_arma <- filter(hres_arma, seq <= 5)
@@ -708,9 +719,9 @@ if (n == 0) {
     hres_lugar <- data.frame(anno = c(ini:fin), Freq = c(0), seq = c(0), eje = "Sin Registro de casos para el periodo")
 }
 
-phres.a <- ggplot(hres_arma, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 13:\n \ Tipo de arma utilizada \n \ en hurto a residencias", x="Tipo de arma", y="Casos (2011-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+phres.a <- ggplot(hres_arma, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 13:\n \ Tipo de arma utilizada \n \ en hurto a residencias", x="Tipo de arma", y="Casos (2011-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
 
-phres.l <- ggplot(hres_lugar, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 14:\n \ Lugar del hurto\n \ a residencias", x="Lugar del hurto", y="Casos (2011-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+phres.l <- ggplot(hres_lugar, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 14:\n \ Lugar del hurto\n \ a residencias", x="Lugar del hurto", y="Casos (2011-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
 
 vplayout <- function(x,y) viewport(layout.pos.row = x, layout.pos.col = y)
 grid.newpage()
@@ -736,7 +747,7 @@ print(hres_lugar, include.rownames=FALSE)
 @
 
 \clearpage
-\section{Hurto a vehículos}
+\section{Hurto a vehículos (Policía Nacional)}
 
 <<Hurto a vehiculos 1, echo=FALSE, fig.height=5, warning=FALSE>>=
 t_hveh_nal <- t_hveh
@@ -810,7 +821,7 @@ z1 <- filter(hveh_zona, seq == 1)
 z2 <- filter(hveh_zona, seq == 2)
 ns <- hveh_zona$Freq
 cm <- ", "
-zon1 <- "% de los casos se registraron en zona "
+zon1 <- " porciento de los casos se registraron en zona "
 zon2 <- " y el restante en zona "
 if (ns == 0) {
     z1 <- NULL
@@ -822,7 +833,6 @@ if (ns == 0) {
 @
 
 Tabla 15. Hurto a vehículos: Tasa por cada 100.000 habitantes a nivel Nacional, del Departamento y del Municipio y número de Casos en el municipio de \Sexpr{nombre$mun}.
-
 <<Tabla 15, echo=FALSE, results='asis'>>=
 anno <- data.frame(anno =c(ini:fin))
 tablaHveh <- cbind(anno, t_hveh_nal$TNacional, t_hveh_dpto$TDpto, t_hveh.x$Tcasos, t_hveh.x$Ncasos)
@@ -866,9 +876,9 @@ if (n == 0) {
     hveh_lugar <- data.frame(anno = c(ini:fin), Freq = c(0), seq = c(0), eje = "Sin Registro de casos para el periodo")
 }
 
-phveh.a <- ggplot(hveh_arma, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 16:\n \ Tipo de arma utilizada \n \ en hurto a vehiculos", x="Tipo de arma", y="Casos (2011-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+phveh.a <- ggplot(hveh_arma, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 16:\n \ Tipo de arma utilizada \n \ en hurto a vehiculos", x="Tipo de arma", y="Casos (2011-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
 
-phveh.l <- ggplot(hveh_lugar, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 17:\n \ Lugar del hurto\n \ a personas", x="Lugar del hurto", y="Casos (2011-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+phveh.l <- ggplot(hveh_lugar, aes(x = reorder(eje, Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 17:\n \ Lugar del hurto\n \ a personas", x="Lugar del hurto", y="Casos (2011-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
 
 vplayout <- function(x,y) viewport(layout.pos.row = x, layout.pos.col = y)
 grid.newpage()
@@ -894,14 +904,14 @@ print(hveh_lugar, include.rownames=FALSE)
 @
 
 \clearpage
-\section{Lesiones personales}
+\section{Lesiones personales (Policía Nacional)}
 
 <<Lesiones personales 1, echo=FALSE, fig.height=5>>=
 les_nal <- les
 les_nal <- filter(les_nal, anno %in% ini:fin)
 les_nal <- group_by(les_nal, anno)
 les_nal <- summarise(les_nal, Nalcasos = sum(casos))
-les_nal <- mutate(les_nal, Pob = c(46044601, 46581823, 47121089, 47661787))
+les_nal <- mutate(les_nal, Pob = c(46044601, 46581823, 47121089, 47661787,  48203405))
 les_nal <- mutate(les_nal, TNal = (Nalcasos*100000)/Pob)
 les_nal <- round(les_nal, 1)
 
@@ -970,7 +980,7 @@ Entre \Sexpr{ini} y \Sexpr{fin} \Sexpr{no}se registraron \Sexpr{sum} lesiones pe
 les_arma <- filter(les, codmun == x, anno %in% ini:fin)
 les_arma <- as.data.frame(table(arma = les_arma$arma))
 les_arma <- arrange(les_arma, desc(Freq))
-les_arma <- mutate(les_arma, seq = 1:8)
+les_arma <- mutate(les_arma, seq = 1:35)
 les_arma <- mutate(les_arma, eje = paste("Arma", les_arma$seq))
 les_arma <- filter(les_arma, Freq > 0)
 les_arma <- filter(les_arma, seq <= 6)
@@ -987,7 +997,7 @@ les_sexo <- mutate(les_sexo, porc = ((les_sexo$Freq)/sum(Freq))*100)
 les_sexo[is.na(les_sexo)] <- 0
 les_sexo <- mutate(les_sexo, Periodo = "Periodo")
 
-pl1 <- ggplot(les_arma, aes(x = reorder(eje,Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 19:\n \ Tipo de arma utilizada \n \ en las lesiones", x="Tipo de arma", y="Numero de casos (2003-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+pl1 <- ggplot(les_arma, aes(x = reorder(eje,Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 19:\n \ Tipo de arma utilizada \n \ en las lesiones", x="Tipo de arma", y="Numero de casos (2003-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
 pl2 <- ggplot(les_sexo, aes(x = reorder(sexo, -Freq), porc, fill=sexo)) + geom_bar(stat = "identity") + coord_flip() + labs(title="Figura 20:\n \ Sexo de la v\'ictima", x="Sexo", y="Porcentaje") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10)) + scale_fill_manual(values = c("cornflowerblue", "darkslateblue"))
 
 vplayout <- function(x,y) viewport(layout.pos.row = x, layout.pos.col = y)
@@ -1015,7 +1025,7 @@ print(les_sexo, include.rownames=FALSE)
 @
 
 \clearpage
-\section{Delitos sexuales}
+\section{Delitos sexuales (Policía Nacional)}
 
 <<Delitos sexuales 1, echo=FALSE, fig.height=5>>=
 dsex.nal <- filter(dsex, anno %in% ini:fin)
@@ -1046,7 +1056,7 @@ nx <- nrow(t_dsex.x1)
 no <- NULL
 sum <- sum(t_dsex.x1$Ncasos)
 tmun <- "del Municipio (linea roja) versus la Tasa"
-figs <- "La Figura 21 muestra los tipos de Delito sexual con mayor registro, la Figura 22 el sexo de la victima y la Figura 23 la zona de ocurrencia."
+figs <- "Las Figura 21, 22 y 23 muestran los tipos de Delito sexual con mayor registro, sexo de la victima y zona de ocurrencia."
 if (nx == 0) {
     t_dsex <- data.frame(anno = c(ini:fin), codmun = c(x), Tcasos = c(0:0))
     no <- "no "
@@ -1077,7 +1087,6 @@ ggplot(data=gt_dsex, aes(x=anno, y=value, colour = variable)) + geom_line(size =
 @
 
 Tabla 21. Delitos sexuales: Tasa por cada 100.000 habitantes a nivel Nacional, del Departamento y del Municipio y número de Casos en el municipio de \Sexpr{nombre$mun}.
-
 <<Tabla 21, echo=FALSE, results='asis'>>=
 anno <- data.frame(anno = c(ini:fin))
 tablaDS <- cbind(anno, dsex.nal$TNal, dsex.dpto$TDpto, t_dsex.x$Tcasos, t_dsex.x$Ncasos)
@@ -1091,21 +1100,20 @@ print(tablaDS, size = "small", add.to.row = addtorow, include.colnames = FALSE, 
 @
 
 Entre \Sexpr{ini} y \Sexpr{fin} \Sexpr{no}se registraron \Sexpr{sum} delitos sexuales en \Sexpr{nombre$mun}. La Figura 23 compara la Tasa de delitos sexuales \Sexpr{tmun} de \Sexpr{nombre$dpto} (línea azul) y la Tasa Nacional (línea azul clara). \Sexpr{figs} Fuente: Policía Nacional.
-
 <<Delitos sexuales 2, echo=FALSE, fig.height=4>>=
 dsex_art <- filter(dsex, anno %in% ini:fin, codmun == x)
 dsex_art <- select(dsex_art, art)
 dsex_art <- as.data.frame(table(dsex_art$art))
 dsex_art <- arrange(dsex_art, desc(Freq))
-dsex_art <- mutate(dsex_art, seq = 1:24)
+dsex_art <- mutate(dsex_art, seq = 1:39)
 dsex_art <- mutate(dsex_art, eje = paste("Delito", dsex_art$seq))
 dsex_art <- filter(dsex_art, seq < 6)
 
 dsex_art.tabla <- filter(dsex, anno %in% ini:fin, codmun == x)
-dsex_art.tabla <- select(dsex_art.tabla, art3)
-dsex_art.tabla <- as.data.frame(table(dsex_art.tabla$art3))
+dsex_art.tabla <- select(dsex_art.tabla, art2)
+dsex_art.tabla <- as.data.frame(table(dsex_art.tabla$art2))
 dsex_art.tabla <- arrange(dsex_art.tabla, desc(Freq))
-dsex_art.tabla <- mutate(dsex_art.tabla, seq = 1:24)
+dsex_art.tabla <- mutate(dsex_art.tabla, seq = 1:39)
 dsex_art.tabla <- filter(dsex_art.tabla, seq < 6)
 
 dsex_sexo <- filter(dsex, anno %in% ini:fin, codmun == x)
@@ -1126,11 +1134,11 @@ dsex_zona[is.na(dsex_zona)] <- 0
 dsex_zona <- mutate(dsex_zona, Periodo = "Periodo")
 dsex_zona <- filter(dsex_zona, Var1 == "URBANA" | Var1 == "RURAL")
 
-pdsex.a <- ggplot(dsex_art, aes(x = reorder(Var1,Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") +  coord_flip() + labs(title="Figura 24:\n \ Tipo de delito sexual denunciado", x="Tipo de arma", y="Numero de casos (2003-2014)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
+pdsex.a <- ggplot(dsex_art, aes(x = reorder(Var1,Freq), Freq, fill="lightgray")) + geom_bar(stat = "identity") +  coord_flip() + labs(title="Figura 24:\n \ Tipo de delito sexual denunciado", x="Tipo de arma", y="Numero de casos (2003-2015)") + theme(legend.position = "none") + theme(plot.title = element_text(size = 10))
 
-pdsex.s <- ggplot(dsex_sexo, aes(x = reorder(Var1, -Freq), porc, fill=Var1)) + geom_bar(stat = "identity") + coord_flip() + theme(legend.position = c(.5, .1)) + labs(title="Figura 25:\n \ Delito sexual\n \ por sexo victima", x="2003-2014", y="Porcentaje sexo victima") + scale_fill_manual(values = c("cornflowerblue", "darkslateblue", "gray")) + theme(plot.title = element_text(size = 10)) + theme(legend.position = "none")
+pdsex.s <- ggplot(dsex_sexo, aes(x = reorder(Var1, -Freq), porc, fill=Var1)) + geom_bar(stat = "identity") + coord_flip() + theme(legend.position = c(.5, .1)) + labs(title="Figura 25:\n \ Delito sexual\n \ por sexo victima", x="2003-2015", y="Porcentaje sexo victima") + scale_fill_manual(values = c("cornflowerblue", "darkslateblue", "gray")) + theme(plot.title = element_text(size = 10)) + theme(legend.position = "none")
 
-pdsex.z <- ggplot(dsex_zona, aes(x = reorder(Var1, -Freq), porc, fill=Var1)) + geom_bar(stat = "identity") + coord_flip() + theme(legend.position = c(.5, .1)) + labs(title="Figura 26:\n \ Delito sexual\n \ por tipo de zona", x="2003-2014", y="Porcentaje zona del delito") + scale_fill_manual(values = c("MediumSeaGreen", "ForestGreen")) + theme(plot.title = element_text(size = 10)) + theme(legend.position = "none")
+pdsex.z <- ggplot(dsex_zona, aes(x = reorder(Var1, -Freq), porc, fill=Var1)) + geom_bar(stat = "identity") + coord_flip() + theme(legend.position = c(.5, .1)) + labs(title="Figura 26:\n \ Delito sexual\n \ por tipo de zona", x="2003-2015", y="Porcentaje zona del delito") + scale_fill_manual(values = c("MediumSeaGreen", "ForestGreen")) + theme(plot.title = element_text(size = 10)) + theme(legend.position = "none")
 
 vplayout <- function(x,y) viewport(layout.pos.row = x, layout.pos.col = y)
 grid.newpage()
@@ -1151,6 +1159,7 @@ print(dsex_art.tabla, include.rownames=FALSE)
 Tabla 23. Delito sexual por sexo de la víctima
 <<Tabla 23, echo=FALSE, results='asis'>>=
 dsex_sexo <- select(dsex_sexo, Var1, porc)
+dsex_sexo <- filter(dsex_sexo, Var1 != "NO REPORTA")
 colnames(dsex_sexo) <- c("Sexo", "Porcentaje (%)")
 dsex_sexo <- xtable(dsex_sexo)
 print(dsex_sexo, include.rownames=FALSE)
@@ -1165,13 +1174,27 @@ print(dsex_zona, include.rownames=FALSE)
 @
 
 \clearpage
-\section{Violencia intrafamiliar}
+\section{Violencia intrafamiliar (Medicina Legal)}
 
 <<Violencia intrafamiliar 1, echo=FALSE, fig.height=4.5>>=
 # Pob_nna: 0-17 años
 # Pob_am: a partir de los 60 años
 # Pob_vp: 15-59 años
 # Pob_vf: total edades
+
+t_vifnal.T <- group_by(t_vif, anno)
+t_vifnal.T <- summarise(t_vifnal.T, N = sum(Ncasos), P = sum(Pob))
+t_vifnal.T <- mutate(t_vifnal.T, Tvifnal = (N*100000)/P)
+t_vifnal.T <- round(t_vifnal.T, digits = 1)
+t_vifdpto.T <- group_by(t_vif, coddpto)
+t_vifdpto.T <- summarise(t_vifdpto.T, Nd = sum(Ncasos), Pd = sum(Pob))
+t_vifdpto.T <- filter(t_vifdpto.T, coddpto == y)
+t_vifdpto.T <- mutate(t_vifdpto.T, Tvifdpto = (Nd*100000)/Pd)
+t_vifdpto.T <- round(t_vifdpto.T, digits = 1)
+t_vif.x <- filter(t_vif, codmun == x)
+t_vif.x <- mutate(t_vif.x, Tx = (Ncasos*100000)/Pob)
+t_vif.x <- select(t_vif.x, codmun, anno, Tx)
+t_vif.x <- round(t_vif.x, digits = 1)
 
 t_vifnal <- na.omit(t_vif)
 t_vifnal <- group_by(t_vifnal)
@@ -1235,28 +1258,40 @@ ggplot(gt_vifxs_long, aes(x = variable, y = value, fill = Sexo)) + geom_bar(stat
 \section{Anexo: Glosario}
 
 \textit{Casas de Justicia}: Centros multiagenciales de información, orientación, referencia y prestación de servicios de resolución de conflictos, donde se aplican y ejecutan mecanismos de justicia formal y no formal. Con ellas se pretende acercar la justicia al ciudadano orientándolo sobre sus derechos, previniendo el delito, luchando contra la impunidad, facilitándole el uso de los servicios de justicia formal y promocionando la utilización de mecanismos alternativos de resolución de conflictos. Los servicios que se prestan en las Casas de Justicia serán gratuitos. Artículo 2.1.2.1 del Decreto 1069 de 2015.
+\\
 
 \textit{Centros de Conciliación}: Es aquel autorizado por el Ministerio de Justicia y del Derecho para que preste el soporte operativo y administrativo requerido para el buen desarrollo de las funciones de los conciliadores y en especial para conocer de los procedimientos de negociación de deudas y convalidación de acuerdos privados de los que trata el Título 4 de la Sección 3 del Libro 3 del Código General del Proceso. Artículo 2.1.2.1 del Decreto 1069 de 2015.
+\\
 
 \textit{C.T.I.}: Cuerpo Técnico de Investigación, es una división de la \href{http://www.fiscalia.gov.co/colombia/}{Fiscalía General de la Nación} cuya función es asesorar al Fiscal general en la determinación de políticas y estrategias relacionadas con las funciones de policía judicial, en los temas como la investigación del delito, los servicios forenses, servicios de genética y en la gestión de la información técnica y judicial útil para la investigación penal.
+\\
 
 \textit{Delitos sexuales}: el Código Penal establece varios artículos que tipifican el delito sexual, los que se enmarcan en los principios rectores de la ley penal colombiana tales como la dignidad humana, los derechos humanos, principios de las sanciones penales (necesidad, proporcionalidad, razonabilidad) y en lo correspondiente a las funciones de la pena (prevención general, retribución justa, prevención especial, reinserción social y protección al condenado), entre otras \href{http://www.medicinalegal.gov.co/documents/10180/33604/2+Delitosexual.pdf/7abb468a-ddd4-4f85-b2ef-bec607dba06b}{Instituto Nacional de Medicina Legal y Ciencias Forenses}.
+\\
 
 \textit{Homicidio}: El homicidio lo entiende la administración de justicia en Colombia, como la supresión por conducta del agente, de una vida humana, sin justificación jurídicamente atendible de manera dolosa o culposa. Esta conducta se encuentra tipificada por el Código Penal Colombiano, en donde se contemplan unas circunstancias de agravación, adicionalmente, se encuentran otras definiciones, que a su vez, son adaptada por cada institución de acuerdo a su misionalidad, entre las cuales están las del Instituto Nacional de Medicina Legal y Ciencias Forenses, la Policía Nacional y el Ministerio de Defensa Nacional.
+\\
 
 \textit{Hurto}: En el Código Penal Colombiano se encuentra su definición formal como ``el que se apodere de una cosa mueble ajena, con el propósito de obtener provecho para sí o para otro". \href{http://www.enciclopedia-juridica.biz14.com/d/hurto/hurto.htm}{Definición penal}.
+\\
 
 \textit{Justicia Formal}: La justicia formal es una manera para dirimir las controversias entre los ciudadanos. En ella se encuentran todos los operadores de la rama judicial estructurada en las diferentes jurisdicciones a saber: constitucional, ordinaria, contencioso administrativa, indígena y paz.
+\\
 
 \textit{Justicia no Formal}: La justicia no formal es otra manera para dirimir las controversias entre los ciudadanos. La justicia no formal está conformada por los mecanismos alternativos de solución de conflictos (i.e. conciliación, arbitraje y amigable composición) y la justicia comunitaria (i.e. comunidad ROM, Raizales, etc.).
+\\
 
 \textit{Juzgado}: Unidad básica de gestión judicial en la cual el juez tramita los procesos judiciales.
+\\
 
 \textit{Lesiones personales}: El que causa daño en el cuerpo de otro con inención. ``En términos médico legales, para los efectos jurídicos, una lesión es una alteración de la morfología y/o fisiología de órganos, sistemas o segmentos corporales, producida por un agente traumático, que trastorna la salud y causa desequilibrios de mayor o menor gravedad, según el daño ocasionado. Para la aplicación de la ley, la lesión debe ser causada por un tercero o agente externo a la persona lesionada, es decir que no puede ser autoinflingida". \href{http://www.medicinalegal.gov.co/documents/48758/78081/R6.pdf/694176ec-e044-4266-a9d1-61543adc343c}{Instituto Nacional de Medicina Legal y Ciencias Forenses}.
+\\
 
 \textit{Notaría/Notario}: Notario: es un servicio público que implica el ejercicio de la fe notarial. La fe pública o notarial otorga plena autenticidad a las declaraciones emitidas ante el notario y a lo expresado por éste respecto de los hechos percibidos en el ejercicio de sus funciones, en el caso y con los requisitos que la ley establece (Artículo 1º  del decreto 2148 de 1983). Notaría: Para efectos de conocer de los procedimientos de negociación de deudas y convalidación de acuerdos privados de los que trata el Título 4 de la Sección 3 del Libro 3 del Código General del Proceso se entiende por notaria la institución integrada por el notario y los conciliadores inscritos en la lista que conforme para el efecto, de acuerdo con lo dispuesto en el artículo 533 del Código General del Proceso (Artículo 2.1.2.1 del Decreto 1069 de 2015).
+\\
 
 \textit{Rango etario}: Se define como la agrupación de edades en rangos que definen características de tipo social, sicológico y físico de los individuos. Para este documento se definen los siguientes rangos: niños, niñas y adolescentes (0 a 17 años), jóvenes (18 a 28 años), adultos (29 a 59 años) y adulto Mayor (60 años o más). Fuente: Instituto Nacional de Medicina Legal y Ciencias Forenses.
+\\
 
 \textit{Tasa por cada 100.000 habitantes}: Se define como el número de casos presentados de un determinado delito en el municipio (N) por cada 100.000 habitantes sobre el total de la población del municipio (P). La fórmula de cálculo para el municipio es la siguiente:
 
@@ -1265,10 +1300,13 @@ Tasa = (N*100.000)/P
 \end{equation}
 
 \textit{Tipo de arma}: Artefacto mecánico o de acción manual que es utilizado para infringir un daño premeditado o consciente, o con el propósito de generar miedo y supresión de cualquier respuesta por parte de la víctima.
+\\
 
 \textit{Tipo penal}: De acuerdo al delito en meción, el código penal establece una tipología especial que da cuenta de las particularidades al momento de cometer el delito, así como las implicaciones legales y punitivas del mismo.
+\\
 
 \textit{Violencia intrafamiliar}: La violencia intrafamiliar, también nombrada como violencia familiar o violencia doméstica, puede incluir distintas formas de maltrato, desde intimidación hasta golpes, pasando por el acoso o los insultos. El violento puede ejercer su accionar contra un solo integrante de la familia (como su pareja o su hijo) o comportarse de forma violenta con todos \href{http://www.medicinalegal.gov.co/documents/88730/1656998/Forensis+Interactivo+2014.24-JULpdf.pdf/9085ad79-d2a9-4c0d-a17b-f845ab96534b}{Instituto Nacional de Medicina Legal}.
+\\
 
 \textit{Zona}: Por zona rural (término homologable a la definición de resto) se entiende la porción del territorio que está por fuera de la zona urbana (término homologable a definición de cabecera).
 
